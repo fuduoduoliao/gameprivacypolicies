@@ -24,16 +24,6 @@
   .doc:hover, .doc:focus-visible { border-color:var(--accent); transform:translateY(-1px); }
   .doc b { display:block; font-size:1rem; }
   .doc span { color:var(--muted); font-size:.9rem; }
-  .tools { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin:16px 0 6px; }
-  input[type="search"] { flex:1 1 260px; min-width:0; font:inherit; color:inherit; background:var(--soft); border:1px solid var(--line); border-radius:10px; padding:10px 14px; }
-  input[type="search"]:focus { outline:none; border-color:var(--accent); }
-  .count { color:var(--muted); font-size:.9rem; white-space:nowrap; }
-  ul.games { list-style:none; padding:0; margin:10px 0 0; display:grid; gap:10px; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); }
-  ul.games li { margin:0; }
-  ul.games a { display:block; text-decoration:none; color:inherit; border:1px solid var(--line); border-radius:10px; padding:10px 14px; }
-  ul.games a:hover, ul.games a:focus-visible { border-color:var(--accent); color:var(--accent); }
-  ul.games a small { display:block; color:var(--muted); font-size:.74rem; letter-spacing:-.01em; overflow-wrap:anywhere; }
-  .empty { display:none; color:var(--muted); padding:16px 0; }
   footer { margin-top:48px; padding-top:20px; border-top:1px solid var(--line); color:var(--muted); font-size:.92rem; }
   a { color:var(--accent); }
   @media (max-width: 620px) { main { padding-top:32px; } h1 { font-size:1.6rem; } }
@@ -53,7 +43,7 @@
 <div class="summary">
   <strong>One set of documents for all our games</strong>
   <p>Every game we publish is a free casual game supported by advertising through Unity LevelPlay (ironSource) and its demand partners. We do not create accounts, we do not run servers holding your game data, and we do not sell personal information. Progress and settings stay on your device.</p>
-  <p>Each game has its own privacy policy so that the package name and the permissions listed are always the ones that apply to that build. If you are not sure which game you are playing, the package name is shown on its Google Play listing.</p>
+  <p>Each game has its own privacy policy so that the package name and the permissions listed are always the ones that apply to that build. You can open it from the game itself (top-right menu &rarr; Privacy &amp; Ads) or from that game's Google Play listing.</p>
 </div>
 
 <h2>Legal documents</h2>
@@ -68,51 +58,11 @@
   </a>
 </div>
 
-<h2>Game privacy policies</h2>
-<div class="tools">
-  <label for="q" class="count">Filter</label>
-  <input id="q" type="search" placeholder="Type a game name, e.g. yarn, tower, fish&hellip;" autocomplete="off">
-  <span class="count" id="count">1 game</span>
-</div>
-
-<ul class="games" id="games">
-  <li><a href="YarnFlowprivacypolicy.html">Car Jam Puzzle: Pixel Weave<small>com.fuduoduoliao.yarnflow</small></a></li>
-  <li><a href="MirrorLightprivacypolicy.html">Mirror Light<small>com.fuduoduoliao.mirrorlight</small></a></li>
-</ul>
-
-<p class="empty" id="empty">No game matches that search. Please check the package name on the Google Play listing.</p>
-
 <footer>
   <p>Questions about privacy, advertising data or these documents: <a href="mailto:fuduoduoliao@qq.com">fuduoduoliao@qq.com</a></p>
   <p>We do not offer in-app purchases or subscriptions in any of our games. Our games are not directed to children under 13. We ask for your advertising choice (personalized or non-personalized) in-game on first launch; you can change it at any time from the in-game privacy menu.</p>
 </footer>
 </main>
 
-<script>
-  (function () {
-    var input = document.getElementById('q');
-    var items = Array.prototype.slice.call(document.querySelectorAll('#games li'));
-    var count = document.getElementById('count');
-    var empty = document.getElementById('empty');
-    var total = items.length;
-    count.textContent = total + (total === 1 ? ' game' : ' games');
-
-    function apply() {
-      var q = input.value.trim().toLowerCase();
-      var shown = 0;
-      items.forEach(function (li) {
-        var text = li.textContent.toLowerCase();
-        var hit = !q || text.indexOf(q) !== -1;
-        li.style.display = hit ? '' : 'none';
-        if (hit) shown++;
-      });
-      count.textContent = shown + ' of ' + total + (total === 1 ? ' game' : ' games');
-      empty.style.display = shown ? 'none' : 'block';
-    }
-
-    input.addEventListener('input', apply);
-    input.addEventListener('search', apply);
-  })();
-</script>
 </body>
 </html>
